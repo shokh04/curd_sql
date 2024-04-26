@@ -55,3 +55,33 @@ delete_car = '''
 '''
 cur.execute(delete_car)
 conn.commit()
+
+
+
+
+
+# fibonacci
+class Fibo:
+    def __init__(self, stop):
+        self.stop = stop
+        self.prev = 0
+        self.current = 1
+        self.counter = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.counter >= self.stop:
+            raise StopIteration
+        else:
+            result = self.prev
+            self.prev, self.current = self.current, self.prev + self.current
+            self.counter += 1
+            return result
+
+
+limit = int(input("Fibonacci sonini kiriting: "))
+fib = Fibo(limit)
+for i in fib:
+    print(i)
